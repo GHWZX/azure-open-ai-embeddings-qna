@@ -57,7 +57,7 @@ class LLMHelper:
         os.environ["OPENAI_DEPLOYMENT_TYPE"] = "Chat"
         os.environ["OPENAI_TEMPERATURE"]= "0"
         os.environ["VECTOR_STORE_TYPE"] = "AzureSearch"
-        os.environ['AZURE_SEARCH_SERVICE_NAME']= "fastdocsintelligence-search"
+        os.environ['AZURE_SEARCH_SERVICE_NAME']= "https://fastdocsintelligence-search.search.windows.net"
         os.environ['AZURE_SEARCH_ADMIN_KEY'] = "EVoKY65kNzou2YEdHElmYgmd4XYqzTmWR6bQnlXqdsAzSeAP8o7P"
         
         openai.api_type = "azure"
