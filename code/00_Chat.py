@@ -22,7 +22,8 @@ def ask_followup_question(followup_question):
     st.session_state.chat_askedquestion = followup_question
     st.session_state['input_message_key'] = st.session_state['input_message_key'] + 1
 
-try :
+def main():
+#try :
     # Initialize chat history
     if 'chat_question' not in st.session_state:
             st.session_state['chat_question'] = ''
@@ -91,5 +92,8 @@ try :
             st.markdown(f'\n\nSources: {st.session_state["chat_source_documents"][i]}')
             message(st.session_state['chat_history'][i][0], is_user=True, key=str(i)+'user' + '_user', avatar_style=user_avatar_style, seed=user_seed)
 
-except Exception:
-    st.error(traceback.format_exc())
+#except Exception:
+    #st.error(traceback.format_exc())
+    
+if __name__ == '__main__':
+    main()
