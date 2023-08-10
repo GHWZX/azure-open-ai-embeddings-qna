@@ -51,14 +51,14 @@ class LLMHelper:
         translator: AzureTranslatorClient = None):
 
         load_dotenv()
-        os.environ('OPENAI_API_BASE') = "https://ast-intelligence-openai-gpt4-instance.openai.azure.com/"
-        os.environ('OPENAI_ENGINE') = "gpt-4-32k"
-        os.environ('OPENAI_API_KEY') = "f89ffee48da74a0abf037e94a0f88c40"
-        os.environ("OPENAI_DEPLOYMENT_TYPE") = "Chat"
-        os.environ("OPENAI_TEMPERATURE")= "0"
-        os.environ("VECTOR_STORE_TYPE") = "AzureSearch"
-        os.environ('AZURE_SEARCH_SERVICE_NAME')= "fastdocsintelligence-search"
-        os.environ('AZURE_SEARCH_ADMIN_KEY') = "EVoKY65kNzou2YEdHElmYgmd4XYqzTmWR6bQnlXqdsAzSeAP8o7P"
+        os.environ['OPENAI_API_BASE'] = "https://ast-intelligence-openai-gpt4-instance.openai.azure.com/"
+        os.environ['OPENAI_ENGINE'] = "gpt-4-32k"
+        os.environ['OPENAI_API_KEY'] = "f89ffee48da74a0abf037e94a0f88c40"
+        os.environ["OPENAI_DEPLOYMENT_TYPE"] = "Chat"
+        os.environ["OPENAI_TEMPERATURE"]= "0"
+        os.environ["VECTOR_STORE_TYPE"] = "AzureSearch"
+        os.environ['AZURE_SEARCH_SERVICE_NAME']= "fastdocsintelligence-search"
+        os.environ['AZURE_SEARCH_ADMIN_KEY'] = "EVoKY65kNzou2YEdHElmYgmd4XYqzTmWR6bQnlXqdsAzSeAP8o7P"
         
         openai.api_type = "azure"
         openai.api_base = os.getenv('OPENAI_API_BASE')
