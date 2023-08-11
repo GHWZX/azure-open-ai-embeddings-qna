@@ -7,6 +7,8 @@ class AzureFormRecognizerClient:
     def __init__(self, form_recognizer_endpoint: str = None, form_recognizer_key: str = None):
 
         load_dotenv()
+        os.environ['FORM_RECOGNIZER_ENDPOINT'] = "https://westeurope.api.cognitive.microsoft.com/"
+        os.environ['FORM_RECOGNIZER_KEY'] = "1a09ebc64191408f995d43efef7288b5"
 
         self.pages_per_embeddings = int(os.getenv('PAGES_PER_EMBEDDINGS', 2))
         self.section_to_exclude = ['footnote', 'pageHeader', 'pageFooter', 'pageNumber']
