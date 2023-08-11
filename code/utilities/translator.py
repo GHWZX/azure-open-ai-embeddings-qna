@@ -7,7 +7,10 @@ class AzureTranslatorClient:
     def __init__(self, translate_key=None, translate_region=None, translate_endpoint=None):
 
         load_dotenv()
-
+        os.environ['TRANSLATE_KEY'] = "234a135f575a494f990e9ef3a37fe90c"
+        os.environ['TRANSLATE_REGION'] = "westeurope"
+        os.environ['TRANSLATE_ENDPOINT'] = "https://westeurope.api.cognitive.microsoft.com/"
+        
         self.translate_key = translate_key if translate_key else os.getenv('TRANSLATE_KEY')
         self.translate_region = translate_region if translate_region else os.getenv('TRANSLATE_REGION')
         self.translate_endpoint = translate_endpoint if translate_endpoint else os.getenv('TRANSLATE_ENDPOINT')
