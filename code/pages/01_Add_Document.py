@@ -64,7 +64,7 @@ try:
 
     with st.expander("Add a single document to the knowledge base", expanded=True):
         st.write("For heavy or long PDF, please use the 'Add documents in batch' option below.")
-        st.checkbox("Translate document to English", key="translate")
+        #st.checkbox("Translate document to English", key="translate")
         uploaded_file = st.file_uploader("Upload a document to add it to the knowledge base", type=['pdf','jpeg','jpg','png', 'txt'])
         if uploaded_file is not None:
             # To read file as bytes:

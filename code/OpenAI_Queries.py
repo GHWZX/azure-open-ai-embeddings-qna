@@ -37,6 +37,7 @@ def check_deployment():
             """)
         st.error(traceback.format_exc())
     #\ 3. Check if the translation is working
+    '''
     try:
         llm_helper = LLMHelper()
         llm_helper.translator.translate("This is a test", "it")
@@ -47,6 +48,7 @@ def check_deployment():
             Then restart your application.  
             """)
         st.error(traceback.format_exc())
+    '''
     #\ 4. Check if the Redis is working with previous version of data
     try:
         llm_helper = LLMHelper()
