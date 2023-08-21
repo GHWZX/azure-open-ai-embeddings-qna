@@ -349,3 +349,36 @@ class LLMHelper:
         except Exception as e:
             encodedtext = text
         return encodedtext
+        
+    def get_tender_information(self, queries):
+        '''
+        Extract tender basic information
+        :param queries: Array of queries to be answered
+        '''
+        question_generator = LLMChain(llm=self.llm, prompt=CONDENSE_QUESTION_PROMPT, verbose=False)
+        doc_chain = load_qa_with_sources_chain(self.llm, chain_type="stuff", verbose=False, prompt=self.prompt)
+        chain = ConversationalRetrievalChain(
+            retriever=self.vector_store.as_retriever(),
+            question_generator=question_generator,
+            combine_docs_chain=doc_chain,
+            return_source_documents=True,
+            # top_k_docs_for_context= self.k
+        )
+        for query in queries:
+            result = chain({"question": query})
+            sources = "\n".join(set(map(lambda x: x.metadata["source"], result['source_documents'])))
+
+            container_sas = self.blob_client.get_container_sas()
+
+            contextDict ={}
+            for res in result['source_documents']:
+                source_key = self.filter_sourcesLinks(res.metadata['source'].replace('_SAS_TOKEN_PLACEHOLDER_', container_sas)).replace('\n', '').replace(' ', '')
+                if source_key not in contextDict:
+                    contextDict[source_key] = []
+                myPageContent = self.clean_encoding(res.page_content)
+                contextDict[source_key].append(myPageContent)
+        
+            result['answer'] = result['answer'].split('SOURCES:')[0].split('Sources:')[0].split('SOURCE:')[0].split('Source:')[0]
+            result['answer'] = self.clean_encoding(result['answer'])
+            sources = sources.replace('_SAS_TOKEN_PLACEHOLDER_', container_sas)
+            sources = self.filter_sourcesLinks(sources)
